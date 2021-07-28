@@ -65,34 +65,18 @@ const logouts = () => {
 
   <Dropdown.Menu style={{width:"200px"}}>
 
-    <Dropdown.Item  >
-    <Row>
-        <Col sm="2"> <BsPeopleCircle style={{color:"blue"}} /> </Col>
-        <Col sm="2">
-        <Link to="/profile" style={{backgroundColor:"transparent"}} className="btn btn-light">profile</Link>
-        </Col>
-        </Row>
-
-        </Dropdown.Item>
+  
 
         <Dropdown.Item >
         <Row>
-        <Col sm="2"> <TiHomeOutline style={{color:"blue"}} /> </Col>
+        {/* <Col sm="2"> <TiHomeOutline style={{color:"blue"}} /> </Col> */}
         <Col sm="2">
-    <Link to="/AddProperty" style={{backgroundColor:"transparent"}} className="btn btn-light">AddProperty</Link>
+    <Link to="/AddProperty" style={{backgroundColor:"transparent"}} className="btn btn-light">AddProduct</Link>
           
         </Col>
       </Row>
         </Dropdown.Item>
         
-        <Dropdown.Item >
-        <Row>
-        <Col sm="2"> <BiReceipt style={{color:"blue"}} /> </Col>
-        <Col sm="2">
-    <Link to="/History" style={{backgroundColor:"transparent"}} className="btn btn-light">History</Link>
-        </Col>
-      </Row>
-        </Dropdown.Item>
        
     <Dropdown.Divider />
     <Dropdown.Item >

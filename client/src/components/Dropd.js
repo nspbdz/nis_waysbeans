@@ -67,29 +67,7 @@ const handleSignout = (e) => {
         </Col>
       </Row>
         </Dropdown.Item>
-        <Dropdown.Item >
-        <Row>
-        <Col sm="2"> <BsCalendar style={{color:"blue"}} /> </Col>
-        <Col sm="2">
-    <Link to="/MyBooking" style={{backgroundColor:"transparent"}} className="btn btn-light">MyBooking</Link>
-          
-        </Col>
-      </Row>
-        </Dropdown.Item>
-        
-        <Dropdown.Item >
-        <Row>
-        <Col sm="2"> <BiReceipt style={{color:"blue"}} /> </Col>
-        <Col sm="2">
-    <Link to="/MyBookingHistory" style={{backgroundColor:"transparent"}} className="btn btn-light">MyBookingHistory</Link>
-          
-        </Col>
-      </Row>
-        </Dropdown.Item>
-        {/* <Dropdown.Item >
-    <Link to="/MyBookingPending" style={{backgroundColor:"transparent"}} className="btn btn-light">MyBookingPending</Link>
-        </Dropdown.Item> */}
-        
+    
     <Dropdown.Divider />
     <Dropdown.Item >
     <Row>
