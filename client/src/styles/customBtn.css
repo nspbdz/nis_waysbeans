@@ -1,0 +1,30 @@
+.active {
+  background-color: red !important;
+}
+
+#btn{
+  width: 55px;
+  height: 40px;
+  margin: 15px;
+}
+#btnd{
+  width: auto;
+  height: 30px;
+  margin: 15px;
+  text-align:"center";
+  /* background-color: #5A57AB; */
+}
+#datestyle{
+  width: 290px;
+
+}
+.blueButton{
+  /* background-color: #5A57AB; */
+  /* color: #5A57AB; */
+  border-radius: 8px;
+}
+
+.whiteButton{
+  background-color: white;
+  color: black;
+}

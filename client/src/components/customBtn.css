@@ -1,0 +1,27 @@
+#btn{
+  width: 55px;
+  height: 40px;
+  margin: 15px;
+}
+.activee{
+  background-color: red;
+}
+#btnd{
+  width: auto;
+  height: 30px;
+  margin: 15px;
+  text-align:"center";
+}
+#datestyle{
+  width: 290px;
+
+}
+.blueButton{
+  background-color: #5A57AB;
+  color: white;
+}
+
+.whiteButton{
+  background-color: white;
+  color: black;
+}
