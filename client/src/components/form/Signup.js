@@ -6,12 +6,9 @@ import { Redirect, Route } from "react-router-dom";
 const Signin = () => {
   const [data, setData] = useState({
     fullname: "",
-    username: "",
     email: "",
     password: "",
-    gender: "",
     listasid: "",
-    address: "",
 
   });
 
@@ -53,15 +50,6 @@ alert("berhasi register silahkan login  ")
         onChange={handleChange}
         placeholder="Enter your name" />
       </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicUsername">
-        <Form.Label>Username</Form.Label>
-        <Form.Control 
-        type="text" 
-        name="username" 
-        value={data.username}
-        onChange={handleChange}
-        placeholder="Enter Username" />
-      </Form.Group>
       
 
       <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -74,15 +62,7 @@ alert("berhasi register silahkan login  ")
         placeholder="Enter email" />
       </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicAddress">
-        <Form.Label>address</Form.Label>
-        <Form.Control 
-        type="textarea" 
-        name="address" 
-        value={data.address}
-        onChange={handleChange}
-        placeholder="Enter address" />
-      </Form.Group>
+   
       <Form.Group className="mb-3" controlId="formBasicListas">
         <Form.Label>As </Form.Label>
         
@@ -103,15 +83,7 @@ alert("berhasi register silahkan login  ")
         placeholder="Password" />
       </Form.Group>
       
-      <Form.Group className="mb-3" controlId="formBasicGender">
-        <Form.Label>Gender</Form.Label>
-        <Form.Control 
-        type="text" 
-        name="gender" 
-        value={data.gender}
-        onChange={handleChange}
-        placeholder="Gender" />
-      </Form.Group>
+    
       <Button variant="primary" type="submit">
         Submit
       </Button>

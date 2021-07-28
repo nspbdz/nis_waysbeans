@@ -10,10 +10,8 @@ exports.register = async (req, res) => {
  
         const schema = joi.object({
             fullname: joi.string().min(3).required(),
-            gender: joi.string().required(),
             email: joi.string().email().required(),
             listasid: joi.number().required(),
-            address: joi.string().min(3).required(),
             password: joi.string().min(8).required()
         })
 
