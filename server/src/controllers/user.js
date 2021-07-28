@@ -51,13 +51,10 @@ exports.Profile = async (req, res) => {
     try {
     const path = process.env.PATH_FILE
 
-        // const { idUser } = req
+        const { idUser } = req
 
         let myData = await user.findOne({
-            where: {
-        id: req.params.id,
-                
-            },
+          
             attributes: {
                 exclude: ['password', 'createdAt', 'updatedAt']
             }

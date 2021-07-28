@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { IconName } from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { UserContext } from "../contexts/userContext";
 import {Row,Col, Button,  FormControl,  InputGroup,  Form,  Navbar,  Nav,} from "react-bootstrap";
 
@@ -43,33 +43,17 @@ console.log(state);
 // console.log(state.user.listasid)
   return (
     <Navbar expand="lg">
+    
       <Link to="/" className="navbar-brand">
-      <AiOutlineShoppingCart />
-      </Link>
-      <Link to="/" className="navbar-brand">
-        <img src={brand} alt="brand" />
+        {/* <img src={brand} alt="brand" /> */}
+    <p>COffe</p>
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
           
         </Nav>
-        <Form className="d-flex mr-auto">
-          <InputGroup>
-            <FormControl
-              type="text"
-              placeholder="Search"
-              className="mr-auto"
-              aria-describedby="search-button"
-              name="search"
-              value={search}
-              // onChange={handleChange}
-            />
-            <InputGroup.Append>
-              <Button style={{backgroundColor:"#5A57AB"}} id="search-button">search</Button>
-            </InputGroup.Append>
-          </InputGroup>
-        </Form>
+      
         {state.isLogin==true && state.user.listasid==1 &&(
 
           <>
@@ -91,6 +75,9 @@ console.log(state);
           <>
             <Row>
              <Col sm="2" style={{paddingRight:"100px"}}>
+             {/* <Link to="/" className="navbar-brand"> */}
+      <AiOutlineShoppingCart />
+      {/* </Link> */}
              <Dropd />
              </Col>
              <Col sm="5"></Col>

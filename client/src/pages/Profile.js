@@ -26,7 +26,7 @@ function Profile() {
 
   
   const MakeTransaction = () => {
-    fetch('http://localhost:5000/api/v1/my-profile', {
+    fetch('http://localhost:5000/api/v1/user', {
       method: 'GET',
       headers: {
           'Authorization':`Bearer ${token}`
