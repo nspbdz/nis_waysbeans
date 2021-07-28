@@ -11,14 +11,24 @@ module.exports = {
       id: {
         type: Sequelize.INTEGER
       },
-      checkin: {
-        type: Sequelize.DATE
-      },
-      checkout: {
-        type: Sequelize.DATE
-      },
-      total: {
+      user_id: {
         type: Sequelize.INTEGER
+      },
+      product_id: {
+        type: Sequelize.STRING
+      },
+      
+      name: {
+        type: Sequelize.STRING
+      },
+      email: {
+        type: Sequelize.STRING
+      },
+      Phone: {
+        type: Sequelize.INTEGER
+      },
+      address: {
+        type: Sequelize.STRING
       },
       status: {
         type: Sequelize.STRING
@@ -26,12 +36,7 @@ module.exports = {
       attachment: {
         type: Sequelize.STRING
       },
-      user_id: {
-        type: Sequelize.STRING
-      },
-      houseId: {
-        type: Sequelize.INTEGER
-      },
+     
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

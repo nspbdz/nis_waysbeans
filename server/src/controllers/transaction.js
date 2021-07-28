@@ -1,4 +1,4 @@
-const { transaction,user,listAs,House,City } = require('../../models')
+const { transaction,user,listAs,House,City,product  } = require('../../models')
 const joi = require('joi')
 const { Op } = require("sequelize");
 
@@ -47,7 +47,7 @@ exports.createTransaction = async (req, res) => {
             ],
       attributes:{
 
-            exclude:[ "city_id","createdAt", "updatedAt"],
+            exclude:[ "product_id","city_id","createdAt", "updatedAt"],
           },
         },
   ],
@@ -267,23 +267,12 @@ exports.getAllTransaction = async (req, res) => {
                     },
               },
                 {
-                    model:House,
-                    as:"house",
+                    model:product,
+                    as:"product",
                     attributes:{
                       exclude:["id","createdAt", "updatedAt"],
                     },
-                    include: [
-                        {
-                          model: City,
-                          as: "city",
-                          attributes: {
-                            exclude: [  "createdAt", "updatedAt"],
-                          },
-                        },
-                       
-                        
-                       
-                      ],
+                   
                 attributes:{
         
                       exclude:[ "city_id","createdAt", "updatedAt"],
@@ -293,7 +282,7 @@ exports.getAllTransaction = async (req, res) => {
         
                
                 attributes:{
-                    exclude:[ "user_id","houseId","createdAt", "updatedAt"],
+                    exclude:[ "product_id","user_id","houseId","createdAt", "updatedAt"],
                   },
               });
           

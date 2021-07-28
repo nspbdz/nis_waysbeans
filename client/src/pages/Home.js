@@ -45,7 +45,20 @@ const Home = () => {
     // console.log(dataTransaction)
     console.log(data)
     console.log(dataApi)
-
+    const getTransactions = async () => {
+      const response = await API.get("/transactions");
+        // console.log(response);
+        setDataTransaction(response.data.data.transactions);
+        setLoadingTransaction(false);
+      };
+    
+      useEffect(() => {
+        getTransactions();
+        return () => {
+          setDataTransaction(null);
+        };
+      }, []);
+   
     return (
           <>
       <Row >

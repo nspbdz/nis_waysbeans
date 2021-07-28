@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { Form, Button } from "react-bootstrap";
 import { Row,Button, Col } from "react-bootstrap";
 import AddOrder from "../components/form/AddOrder"
-import HouseId from "../components/ProcuctId"
+import ProductDetailItem from "../components/ProductDetailItem"
 function DetailProduct(props) {
   
   const [showSignin, setshowSignin] = useState(false);
@@ -11,7 +11,7 @@ function DetailProduct(props) {
     <div>
     <Row> 
     <Col>
-    <HouseId />
+    <ProductDetailItem />
     <Row>
                         <Col sm></Col>
                         <Col sm></Col>
@@ -23,10 +23,10 @@ function DetailProduct(props) {
                           Add to Cart
                       </Button>
                       {/* </Button> */}
-                      <AddOrder 
+                      {/* <AddOrder 
                       show={showSignin}
                       handleClose={() => setshowSignin(false)}
-                      />
+                      /> */}
                       </>
                         </Col>
 

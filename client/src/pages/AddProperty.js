@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { Form, Button } from "react-bootstrap";
 import { Row,Button, Col } from "react-bootstrap";
 import AddPropertyForm from "../components/form/AddPropertyForm";
-import HouseId from "../components/ProcuctId"
+import ProductDetailItem from "../components/ProductDetailItem"
 function AddProperty(props) {
   
   const [showSignin, setshowSignin] = useState(false);
@@ -11,7 +11,7 @@ function AddProperty(props) {
     <div>
     <Row>
     <Col>
-    <HouseId />
+    <ProductDetailItem />
     <Row>
                     
                       <Col >

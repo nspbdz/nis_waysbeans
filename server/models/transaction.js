@@ -16,10 +16,10 @@ module.exports = (sequelize, DataTypes) => {
           name: "user_id",
         },
       }); 
-      transaction.belongsTo(models.House, { 
-        as: "house",
+      transaction.belongsTo(models.product, { 
+        as: "product",
         foreignKey: {
-          name: "houseId",
+          name: "id",
         },
       }); 
      
@@ -28,15 +28,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   transaction.init({
-    // id: DataTypes.INTEGER,
-    totaltime: DataTypes.STRING,
-    checkin: DataTypes.DATE,
-    checkout: DataTypes.DATE,
-    total: DataTypes.INTEGER,
-    status: DataTypes.STRING,
-    attachment: DataTypes.STRING,
-    user_id: DataTypes.STRING,
-    houseId: DataTypes.INTEGER
+    // id:DataTypes.INTEGER,
+    user_id:DataTypes.INTEGER,
+    product_id:DataTypes.STRING,
+    name:DataTypes.STRING,
+    email:DataTypes.STRING,
+    Phone:DataTypes.INTEGER,
+    address:DataTypes.STRING,
+    status:DataTypes.STRING,
+    attachment:DataTypes.STRING,
+    orderQuantity:DataTypes.INTEGER,
+   
   }, {
     sequelize,
     modelName: 'transaction',

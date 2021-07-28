@@ -6,7 +6,7 @@ import { FaBath,FaBed } from 'react-icons/fa';
 import { useState, useEffect } from "react";
 import { API } from "../config/api";
 
-const ProcuctId = ({ match }) => {
+const ProductDetailItem = ({ match }) => {
   const params = useParams();
   localStorage.setItem("house_id", params.id)
   // var a =localStorage.getItem("house_id")
@@ -53,4 +53,4 @@ console.log(data)
   );
 };
 
-export default ProcuctId;
+export default ProductDetailItem;
