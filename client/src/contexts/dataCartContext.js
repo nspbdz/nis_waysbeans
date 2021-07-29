@@ -3,10 +3,10 @@ import {createContext, useReducer} from 'react';
 export const UserContext = createContext();
 
 const initialState = {
-  isLogin: false,
+  isClick: false,
   user: {
-    name: '',
-    password: '',
+    price: '',
+    qty: '',
   }
 }
 const reducer = (state, action) =>{
@@ -17,7 +17,7 @@ const reducer = (state, action) =>{
       localStorage.setItem("token", action.payload.token);
       return {
         ...state,
-        isLogin: true,
+        isClick: true,
         user: action.payload,
       };
     case "LOGOUT":
@@ -25,7 +25,7 @@ const reducer = (state, action) =>{
       localStorage.removeItem("token");
       return {
         ...state,
-        isLogin: false,
+        isClick: false,
         user: null,
       };
     default:
@@ -37,13 +37,13 @@ const reducer = (state, action) =>{
 //       case "LOGIN_SUCCESS":
 //           return {
 //             ...state,
-//               isLogin: true,
+//               isClick: true,
 //               user: payload
 //           }
 //       case "LOGOUT":
 //           return {
 //             ...state,
-//               isLogin: false,
+//               isClick: false,
 //               user: {},
               
 //           }

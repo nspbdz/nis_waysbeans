@@ -1,4 +1,6 @@
 import {useContext,useState} from 'react';
+import { useHistory,Router,Link } from "react-router-dom";
+
 import { Form } from "react-bootstrap";
 
 import {
@@ -7,8 +9,11 @@ import {
 import { CartContext } from '../contexts/cartContext';
 
 const Checkout = (props) => {
-  const {state, dispatch} = useContext(CartContext);
+  var token= localStorage.getItem("token")
 
+  const router = useHistory();
+
+  const {state, dispatch} = useContext(CartContext);
   const handleClick = (item, type) => {
     dispatch({
       type,
@@ -16,8 +21,13 @@ const Checkout = (props) => {
     })
   };
   
-  
+  console.log(state.carts[0].qty)
+  const qty=state.carts[0].qty
+  const price=state.carts[0].price
+  const description=state.carts[0].description
+  const ids=state.carts[0].ids
   console.log(state)
+  console.log(description)
   console.log(state.carts.length)
 
 
@@ -26,10 +36,11 @@ const Checkout = (props) => {
     email: "",
     Phone: "",
     possCode  : "",
-    price: 0,
-    orderQuantity: 0,
+    price: "",
+    orderQuantity: "",
     address: "",
     imageFile: null,
+    product_id: "",
   });
 
   const handleChange = (e) => {
@@ -42,30 +53,51 @@ const Checkout = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
+    console.log("clicked")
+    
     try {
       const formData = new FormData();
       formData.set("name", data.name);
       formData.set("email", data.email);
       formData.set("phone", data.phone);
       formData.set("possCode", data.possCode);
-      formData.set("orderQuantity", data.orderQuantity);
-      
+      formData.set("orderQuantity", qty);
       formData.set("address", data.address);
-      formData.set("price", data.price);
-      formData.set("description", data.description);
+      formData.set("price", price);
+      formData.set("description", description);
+      formData.set("product_id", ids);
       formData.append("imageFile", data.imageFile, data.imageFile.name);
 
       const config = {
         headers: {
           "Content-Type": "multipart/form-data",
+          'Authorization':`Bearer ${token}`
         },
       };
-      await props.onAddProduct(formData, config);
+      // let res = await fetch(`http://localhost:5000/api/v1/updatetransaction/150`, {
+        let res = await fetch(`http://localhost:5000/api/v1/transaction`, {
+          method: 'Post',
+          body: formData,
+        }
+  
+      );
+      console.log(res)
+  
+      const stat=res.status
+         if(stat=="200"){
+          console.log("success")
+          alert("kamu berhasil")
+          // router.push("/");
+         }
+      // console.log(res)
+  
     } catch (error) {
       console.log(error);
     }
   };
+  
+
+
   return (
     // <p>asdasdas</p>
     <div>
@@ -81,27 +113,47 @@ const Checkout = (props) => {
             type="text"
             value={data.name}
             required
-            placeholder="product name"
+            placeholder="Name"
             onChange={handleChange}
           />
         </Form.Group>
         <Form.Group>
           <Form.Control
-            name="price"
-            type="number"
-            value={data.price}
-            required
-            placeholder="price"
-            onChange={handleChange}
-          />
-        </Form.Group>
-        <Form.Group>
-          <Form.Control
-            name="description"
+            name="email"
             type="text"
-            placeholder="description"
+            value={data.email}
             required
-            value={data.description}
+            placeholder="email "
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            name="phone"
+            type="number"
+            value={data.phone}
+            required
+            placeholder=" Phone"
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            name="possCode"
+            type="number"
+            value={data.possCode}
+            required
+            placeholder="possCode"
+            onChange={handleChange}
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Control
+            name="address"
+            type="text"
+            placeholder="address"
+            required
+            value={data.address}
             onChange={handleChange}
           />
         </Form.Group>
@@ -113,16 +165,7 @@ const Checkout = (props) => {
             required
           />
         </Form.Group>
-        <Form.Group>
-          <Form.Control
-            name="category"
-            type="text"
-            required
-            placeholder="category"
-            value={data.category}
-            onChange={handleChange}
-          />
-        </Form.Group>
+       
         <Button type="submit">pay</Button>
       </Form>
  

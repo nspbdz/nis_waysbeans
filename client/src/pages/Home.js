@@ -45,7 +45,7 @@ const Home = () => {
           setDataTransaction(null);
         };
       }, []);
-   
+   console.log(data)
     return (
           <>
       <Row >
@@ -91,7 +91,7 @@ const Home = () => {
       
         <CardList data={data} isLoading={isLoading} error={error} />
 
-        }
+        
         </Col>
 </>
 

@@ -101,6 +101,9 @@ console.log(AllCompared)
 var token= localStorage.getItem("token")
 console.log(token);
 
+
+
+
   const MakeTransaction = () => {
     fetch('http://localhost:5000/api/v1/transaction', {
       method: 'POST',

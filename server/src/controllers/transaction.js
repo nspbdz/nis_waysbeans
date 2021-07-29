@@ -3,24 +3,36 @@ const joi = require('joi')
 const { Op } = require("sequelize");
 
 exports.createTransaction = async (req, res) => {
-  const { user: userName, ...transactionsData } = req.body;
-  console.log(req.body);
+  const path = process.env.PATH_FILE
+
+  // const { user: userName, ...transactionsData } = req.body;
+  // console.log(req.body);
   try {
+    let data = req.body
+    const attachment = req.files.imageFile[0].filename 
+   
+    data = {
+      ...data,
+      attachment
+  }
+
     const transactions = await transaction.create({
-      ...req.body,
+      ...req.body,attachment
+      
+
     });
 
   
     let createdTransaction = await transaction.findOne({
       where: {
-        id: transactions.id,
+        address: transactions.address,
       },
       include: 
         {
           model:product,
           as:"product",
           attributes:{
-            exclude:["id","createdAt", "updatedAt"],
+            exclude:["id"],
           }
         
      
@@ -34,7 +46,7 @@ exports.createTransaction = async (req, res) => {
     });
 
 
-    createdTransaction = JSON.parse(JSON.stringify(createdTransaction));
+    // createdTransaction = JSON.parse(JSON.stringify(createdTransaction));
     
    
     res.send({

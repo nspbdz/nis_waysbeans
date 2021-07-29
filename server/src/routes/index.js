@@ -18,10 +18,13 @@ router.post('/register', register)
 router.post('/login', signin)
 router.get('/products', getProducts)
 router.get("/product/:id", getProduct)
-// router.post("/product", uploadFile("imageFile"), createProduct, )
-router.post("/product", authentication,uploadFile("imageFile"), createProduct, )
+router.post("/product", uploadFile("imageFile"), createProduct, )
+// router.post("/product", authentication,uploadFile("imageFile"), createProduct, )
 router.get("/transaction", getMyTransaction)
 router.get("/transaction/:id", getTransaction)
+// router.post("/transaction", uploadFile("imageFile"), createTransaction)
+
+router.post("/transaction", uploadFile("imageFile"),authentication, createTransaction)
 
 
 
@@ -46,7 +49,6 @@ router.delete("/house/:id", deleteHouse)
 // router.put("/house/:id", updateHouse, uploadFile("imageFile"))
 router.patch("/house/:id", uploadFile("imageFile"), updateHouse)
 
-router.post("/transaction", authentication, createTransaction)
 // router.post("/transaction", auth, createTransaction)
 // router.post("/transaction",  createTransaction)
 // router.patch("/updatetransaction/:id", auth,uploadFile("imageFile"), updateTransaction)

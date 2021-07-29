@@ -98,7 +98,7 @@ const MakeTransaction = async (e) => {
   
     const config = {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        // 'Content-Type': 'multipart/form-data',
         'Content-Type': 'application/json', 
         'Authorization':`Bearer ${token}`
       },
@@ -125,7 +125,7 @@ const MakeTransaction = async (e) => {
 };
 console.log(formData)
   
-
+console.log(token)
 
   const handleSubmit = (event) => {
     event.preventDefault()
