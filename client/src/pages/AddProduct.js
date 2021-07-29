@@ -1,9 +1,9 @@
 import { useState } from "react";
 // import { Form, Button } from "react-bootstrap";
 import { Row,Button, Col } from "react-bootstrap";
-import AddPropertyForm from "../components/form/AddPropertyForm";
+import AddPropertyForm from "../components/form/AddProductForm";
 import ProductDetailItem from "../components/ProductDetailItem"
-function AddProperty(props) {
+function AddProduct(props) {
   
   const [showSignin, setshowSignin] = useState(false);
  
@@ -39,18 +39,10 @@ function AddProperty(props) {
 
     
     </Col>
-    {/* <Col>
-    <Button  onClick={() => setshowSignin(true)} className="justic=fy" variant="primary" type="submit">
-            Apply
-        </Button>
-        <AddOrder 
-        show={showSignin}
-        handleClose={() => setshowSignin(false)}
-        />
-    </Col> */}
+   
   </Row>
 </div>
   );
 }
 
-export default AddProperty;
+export default AddProduct;

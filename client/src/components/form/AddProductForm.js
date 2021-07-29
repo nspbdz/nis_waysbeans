@@ -6,7 +6,7 @@ import { UserContext } from "../../contexts/userContext";
 import { API } from "../../config/api";
 import { TiHomeOutline } from 'react-icons/ti';
 
-function AddPropertyForm(props) {
+function AddProductForm(props) {
   const [DataAmenities, setDataAmenities] = useState([]);
   const { handleClose,handleOrder, show } = props;
   const [loading, setLoading] = useState(false);
@@ -89,27 +89,21 @@ const MakeTransaction = async (e) => {
     const formData = new FormData();
    
     formData.set("name", dataUpdate.name);
+    formData.set("stock", dataUpdate.stock);
     formData.set("price", dataUpdate.price);
-    formData.set("typeRent", dataUpdate.typeRent);
-    formData.set("address", dataUpdate.address);
-    formData.set("bedroom", dataUpdate.bedroom);
-    formData.set("bathroom", dataUpdate.bathroom);
-    formData.set("city_id", dataUpdate.city_id);
-    formData.set("amenities", amens.toString());
-    // formData.append("image", dataUpdate.imageFile, dataUpdate.imageFile.name);
+    formData.set("description", dataUpdate.description);
     formData.append("imageFile", dataUpdate.imageFile,dataUpdate.imageFile.name);
-    formData.append("imageFile", dataUpdate.imageFile1,dataUpdate.imageFile1.name);
-    formData.append("imageFile", dataUpdate.imageFile2,dataUpdate.imageFile2.name);
-    formData.append("imageFile", dataUpdate.imageFile3,dataUpdate.imageFile3.name);
+ 
     console.log(formData)
   
     const config = {
       headers: {
-        "Content-Type": "multipart/form-data",
+        // 'Content-Type': 'multipart/form-data',
+        'Content-Type': 'application/json', 
+        'Authorization':`Bearer ${token}`
       },
     };
-    // let res = await fetch(`http://localhost:5000/api/v1/updatetransaction/150`, {
-      let res = await fetch('http://localhost:5000/api/v1/house', {
+      let res = await fetch('http://localhost:5000/api/v1/product', {
         method: 'POST',
         body: formData,
       }
@@ -120,7 +114,7 @@ const MakeTransaction = async (e) => {
     const stat=res.status
        if(stat=="200"){
         console.log("success")
-        alert("Pembayaran Anda Akan di Konfirmasi dalam 1 x 24 Jam        Untuk melihat pesanan Klik Disini Terimakasih")
+        alert("Berhasil menambahkan produk")
         // router.push(`/mybookingpending`);
        }
     // console.log(res)
@@ -131,7 +125,7 @@ const MakeTransaction = async (e) => {
 };
 console.log(formData)
   
-
+console.log(token)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -208,4 +202,4 @@ console.log(formData)
   );
 }
 
-export default AddPropertyForm;
+export default AddProductForm;

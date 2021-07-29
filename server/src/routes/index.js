@@ -23,6 +23,8 @@ router.post("/product", uploadFile("imageFile"), createProduct, )
 router.get("/transaction", getMyTransaction)
 router.get("/transaction/:id", getTransaction)
 router.post("/transaction", uploadFile("imageFile"), createTransaction)
+router.get("/transactions", getAllTransaction)
+router.put("/transaction/:id", authentication, StatusUpdate)
 
 // router.post("/transaction", uploadFile("imageFile"),authentication, createTransaction)
 
@@ -45,6 +47,8 @@ router.get("/houses", getHouses)
 router.get("/house/:id", getHouse)
 router.post("/house", uploadFile("imageFile"), createHouse, )
 router.delete("/house/:id", deleteHouse)
+// router.put("/transaction/:id", StatusUpdate)
+router.patch("/updatetransaction/:id", uploadFile("imageFile"), updateTransaction)
 
 // router.put("/house/:id", updateHouse, uploadFile("imageFile"))
 router.patch("/house/:id", uploadFile("imageFile"), updateHouse)

@@ -20,7 +20,7 @@ console.log(data)
                          <Col xs lg="4">
                          </Col>
                          <Col md="auto" style={{ paddingBottom:"12px"}}>
-              <img src={data.photo} style={{width:"1018px",height:"400.16px",paddingTop:"50px"}} alt="brand" />
+              <img src={data.photo} style={{width:"150px",paddingTop:"50px"}} alt="brand" />
                          <h1>{data.name}</h1>
                          <p className="text-center"> {data.description}</p>
                          <h4>Rp. {data.price}/Day</h4>

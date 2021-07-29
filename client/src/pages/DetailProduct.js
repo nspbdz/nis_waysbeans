@@ -54,13 +54,13 @@ console.log(data1)
                     
                       <Col sm>
                         <>
-                      <Button style={{width:"213px",marginTop:"20px",marginBottom:"20px"}}   onClick={() => setshowSignin(true)} className="justic=fy" variant="primary" type="submit">
+                      {/* <Button style={{width:"213px",marginTop:"20px",marginBottom:"20px"}}   onClick={() => setshowSignin(true)} className="justic=fy" variant="primary" type="submit">
                           Add to Cart
                       </Button>
                     
                       <Button variant="warning" onClick={addProduct}>
                         Add to Cart
-                      </Button>
+                      </Button> */}
                       {/* </Button> */}
                       {/* <AddOrder 
                       show={showSignin}

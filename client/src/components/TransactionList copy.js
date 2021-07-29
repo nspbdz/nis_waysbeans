@@ -4,6 +4,7 @@ import { useState } from "react";
 import TransactionItem from "./TransactionItem";
 import { BiCheckCircle } from "react-icons/bi";
 import { ImCross } from "react-icons/im";
+
 import { BsSearch } from "react-icons/bs";
 import not_found from "../assets/images/not_found.svg";
 import DetailInvoice from "./form/DetailInvoice";
@@ -11,10 +12,6 @@ import DetailInvoice from "./form/DetailInvoice";
 const TransactionList = ({ data, isLoading, error,isLoadingFilter, errors }) => {
   const [showInvoice, setshowInvoice] = useState(false);
   const [dataId, setDataId] = useState();
-  const [dataApi, setDataApi] = useState([])
-
-var token= localStorage.getItem("token")
-
   if (isLoading) return <p>...loading</p>;
   
   if (error) return <h1>Error occured: {error.response.data.message}</h1>;
@@ -24,67 +21,39 @@ var token= localStorage.getItem("token")
  const  handleClick =(id) =>{
   console.log(id)
 
-  setDataId(id)
+  // setDataId(id)
 
   console.log(dataId)
-  setshowInvoice(true)
+  // setshowInvoice(true)
  }
-//  const item=data.filter(items =>(items.id === id) )
  console.log(data)
- const approveStatus = (id) => {
-  // e.preventDefault()
-  
-  fetch(`http://localhost:5000/api/v1/transaction/${id}`, {
+
+
+
+//  http://localhost:5000/api/v1/transaction/1
+
+const UpdateTrx = () => {
+  fetch(`http://localhost:5000/api/v1/transaction/`, {
     method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-        'Authorization':`Bearer ${token}`
-      },
-    body: JSON.stringify({
-      status: "On The Way"
-    }),
+  
+   
   })
     .then((res) => res.json() )
-    .then((res) => { 
+    .then((res) => {
+     console.log(res)
      const stat=res.status
      if(stat=="success"){
       console.log("success")
-      alert("kamu berhasil me Approve status  ")
+      // setDataUser(res.data.myData);
+      // setLoading(false);
+      // alert("kamu berhasil membuat transaksi")
       // router.push(`/mybooking`);
      }
+     console.log(res.status)
    }) 
-    .then((result) => setDataApi(result.rows))
-    
-    .catch((err) => console.log('error'))
-}
-const CancelStatus = (id) => {
-  // e.preventDefault()
-  
-  fetch(`http://localhost:5000/api/v1/transaction/${id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json',
-        'Authorization':`Bearer ${token}`
-      },
-    body: JSON.stringify({
-      status: "Cancel"
-    }),
-  })
-    .then((res) => res.json() )
-    .then((res) => { 
-     const stat=res.status
-     if(stat=="success"){
-      console.log("success")
-      alert("kamu berhasil mencancel status  ")
-      // router.push(`/mybooking`);
-     }
-   }) 
-    .then((result) => setDataApi(result.rows))
-    
     .catch((err) => console.log('error'))
 }
 
- console.log(data)
 
   return (
     <>
@@ -122,17 +91,17 @@ const CancelStatus = (id) => {
                 {item.status== "Waiting Approve" ?
                   <td  > 
                 
-                <Button onClick={() => CancelStatus(item.id)}>
+                <Button onClick={() => handleClick(item.id)}>
                     Cancel
                   </Button>
                 
-                <Button onClick={() => approveStatus(item.id)}>
+                <Button onClick={() => handleClick(item.id)}>
                     Approve
                   </Button>
                 </td>
                 :null
                 }
-                 {item.status== "Cancel" ?
+                 {item.status== "cancel" ?
                   <td  > 
                 
                <ImCross />

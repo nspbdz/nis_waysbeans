@@ -10,8 +10,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
-import About from "./pages/About";
-import AddProperty from "./pages/AddProperty";
+import AddProperty from "./pages/AddProduct";
 
 // MyBooking
 // import DetailProduct from "./pages/DetailProduct";
@@ -39,12 +38,11 @@ const App = () => {
             <Container fluid="lg">
               <Switch>
                 <Route exact path="/" component={Home} />
-                <Route exact path="/about" component={About} />
                 <Route exact path="/houses" component={House} />
                 <Route exact path="/product/:id" component={DetailProduct} />
                 <Route exact path="/Profile" component={Profile} />
                 <Route exact path="/cart" component={Cart} />
-                <Route exact path="/checkout" component={Checkout} />
+                <PrivateRoute exact path="/checkout" component={Checkout} />
                 {/* <Route exact path="/MyBooking" component={MyBooking} /> */}
                 <Route exact path="/AddProperty" component={AddProperty} />
                 

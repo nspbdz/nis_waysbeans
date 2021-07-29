@@ -44,6 +44,8 @@ const Home = () => {
         };
       }, []);
    console.log(data)
+   console.log(dataTransaction)
+   
     return (
           <>
       <Row >
