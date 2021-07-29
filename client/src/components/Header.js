@@ -2,8 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { UserContext } from "../contexts/userContext";
-import {Row,Col, Button,  FormControl,  InputGroup,  Form,  Navbar,  Nav,} from "react-bootstrap";
-
+import {Row,Col,Badge, Button,  FormControl,  InputGroup,  Form,  Navbar,  Nav,} from "react-bootstrap";
+import {CartContext} from "../contexts/cartContext"
 import ModalSignin from "./ModalSignin"; 
 import ModalSignup from "./ModalSignup"; 
 import brand from "../assets/images/brand.svg";
@@ -19,7 +19,9 @@ const Header = () => {
   // const { state, dispatch } = useContext(UserContext);
   const [showSignin, setshowSignin] = useState(false);
   const [showSignup, setshowSignup] = useState(false);
-  
+  const {state: cartState} = useContext(CartContext);
+  console.log("user context state", state)
+  console.log("cart context state", cartState)
 console.log(state);
   useEffect(() => {
     if (!state.isLogin) {
@@ -75,9 +77,12 @@ console.log(state);
           <>
             <Row>
              <Col sm="2" style={{paddingRight:"100px"}}>
-             <Link to="/" className="navbar-brand">
-      <AiOutlineShoppingCart />
-      </Link>
+           
+      <Link to="/cart" className="nav-link mr-3 my-2">     <AiOutlineShoppingCart /> {' '}
+            <Badge className="bg-secondary text-white">{cartState.carts.length}</Badge>
+      {/* <AiOutlineShoppingCart /> */}
+          
+            </Link>
              <Dropd />
              </Col>
              <Col sm="5"></Col>

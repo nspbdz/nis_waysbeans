@@ -2,6 +2,8 @@
 import { Button, Col, Row,Table } from "react-bootstrap";
 import { useState } from "react";
 import TransactionItem from "./TransactionItem";
+import { BiCheckCircle } from "react-icons/bi";
+import { ImCross } from "react-icons/im";
 
 import { BsSearch } from "react-icons/bs";
 import not_found from "../assets/images/not_found.svg";
@@ -19,12 +21,39 @@ const TransactionList = ({ data, isLoading, error,isLoadingFilter, errors }) => 
  const  handleClick =(id) =>{
   console.log(id)
 
-  setDataId(id)
+  // setDataId(id)
 
   console.log(dataId)
-  setshowInvoice(true)
+  // setshowInvoice(true)
  }
  console.log(data)
+
+
+
+//  http://localhost:5000/api/v1/transaction/1
+
+const UpdateTrx = () => {
+  fetch(`http://localhost:5000/api/v1/transaction/`, {
+    method: 'PUT',
+  
+   
+  })
+    .then((res) => res.json() )
+    .then((res) => {
+     console.log(res)
+     const stat=res.status
+     if(stat=="success"){
+      console.log("success")
+      // setDataUser(res.data.myData);
+      // setLoading(false);
+      // alert("kamu berhasil membuat transaksi")
+      // router.push(`/mybooking`);
+     }
+     console.log(res.status)
+   }) 
+    .catch((err) => console.log('error'))
+}
+
 
   return (
     <>
@@ -59,6 +88,7 @@ const TransactionList = ({ data, isLoading, error,isLoadingFilter, errors }) => 
                 <BsSearch onClick={handleClick} 
                 />
                 </td> */}
+                {item.status== "Waiting Approve" ?
                   <td  > 
                 
                 <Button onClick={() => handleClick(item.id)}>
@@ -69,6 +99,30 @@ const TransactionList = ({ data, isLoading, error,isLoadingFilter, errors }) => 
                     Approve
                   </Button>
                 </td>
+                :null
+                }
+                 {item.status== "cancel" ?
+                  <td  > 
+                
+               <ImCross />
+                </td>
+                :null
+                }
+                  {item.status== "success" ?
+                  <td  > 
+                <BiCheckCircle />
+              
+                </td>
+                :null
+                }
+                  {item.status== "On The Way" ?
+                  <td  > 
+                
+                <BiCheckCircle />
+                
+                </td>
+                :null
+                }
     </tr>
    
   </tbody>

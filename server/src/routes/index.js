@@ -21,6 +21,9 @@ router.get("/product/:id", getProduct)
 // router.post("/product", uploadFile("imageFile"), createProduct, )
 router.post("/product", authentication,uploadFile("imageFile"), createProduct, )
 router.get("/transaction", getMyTransaction)
+router.get("/transaction/:id", getTransaction)
+
+
 
 
 
@@ -50,8 +53,8 @@ router.post("/transaction", authentication, createTransaction)
 router.patch("/updatetransaction/:id", uploadFile("imageFile"), updateTransaction)
 router.put("/updatetransacti/:id", StatusUpdate)
 // updateTransaction
-router.get("/transaction/:id", getTransaction)
-router.get("/transactions", getAllTransaction)
+// router.get("/transaction/:id", getTransaction)
+// router.get("/transactions", getAllTransaction)
 router.get("/transaction", transactionId)
 
 router.get("/citys", getCity)

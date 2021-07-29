@@ -18,19 +18,7 @@ const Home = () => {
   const [loading, setLoading] = useState(false);
   const [loadingFilter, setLoadingFilter] = useState(false);
   const [loadingTransaction, setLoadingTransaction] = useState(false);
-  const contextValue = useContext(FilterContext);
-  console.log(contextValue)
-  console.log(contextValue[0].data.amenities)
-  const amenities= contextValue[0].data.amenities
-  const typeRent= contextValue[0].data.typeRent
-  const price= contextValue[0].data.price
-  const bedroom= contextValue[0].data.bedroom
-  const bathroom= contextValue[0].data.bathroom
-  console.log(typeRent)
-  console.log(amenities)
-  console.log(price)
-  console.log(bedroom)
-  console.log(bathroom)
+  
 
   // console.log(state)
   const { isLoading, data, error } = useQuery("product", async () => {
@@ -44,10 +32,9 @@ const Home = () => {
     const [page, setPage] = useState(false)
     // console.log(dataTransaction)
     console.log(data)
-    console.log(dataApi)
     const getTransactions = async () => {
       const response = await API.get("/transactions");
-        // console.log(response);
+        console.log(response);
         setDataTransaction(response.data.data.transactions);
         setLoadingTransaction(false);
       };
@@ -77,14 +64,8 @@ const Home = () => {
         </Row>
         </Col>
         <Col >
-          {page === true 
-          ? 
-          <CardList data={dataApi} isLoading={isLoading} error={error} />
-        :  
-        // <p>jsnajdnsjdnaj</p>
+           
         <CardList data={data} isLoading={isLoading} error={error} />
-
-      }
         </Col>
 </>
 
@@ -107,11 +88,7 @@ const Home = () => {
         </Row>
         </Col>
         <Col >
-          {page === true 
-          ? 
-          <CardList data={dataApi} isLoading={isLoading} error={error} />
-        :  
-        // <p>jsnajdnsjdnaj</p>
+      
         <CardList data={data} isLoading={isLoading} error={error} />
 
         }

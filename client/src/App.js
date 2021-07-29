@@ -2,16 +2,16 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Container } from "react-bootstrap";
 import { UserContextProvider,UserContext } from "./contexts/userContext";
-import { FilterContextProvider } from "./contexts/filterContext";
-import { AmenitiesContextProvider } from "./contexts/AmenitiesContext";
+import { CartContextProvider } from "./contexts/cartContext";
 
 import PrivateRoute from "./components/route/PrivateRoute";
 import DetailProduct from "./pages/DetailProduct";
 import Home from "./pages/Home";
 import Header from "./components/Header";
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
 import About from "./pages/About";
 import MyBooking from "./pages/MyBooking";
-import Profile from "./pages/Profile";
 import MyBookingPending from "./pages/MyBookingPending";
 import MyBookingHistory from "./pages/MyBookingHistory";
 import History from "./pages/AdminHistory";
@@ -22,6 +22,7 @@ import AddProperty from "./pages/AddProperty";
 import { API, setAuthToken } from "./config/api";
 import { useContext, useEffect } from "react";
 import House from "./pages/House";
+import Checkout from "./pages/Checkout";
 
 
 if (localStorage.getItem("token")) {
@@ -35,8 +36,7 @@ const App = () => {
   return (
     <QueryClientProvider client={client}>
        <UserContextProvider>
-        <FilterContextProvider>
-        {/* <AmenitiesContextProvider> */}
+        <CartContextProvider>
        
           <Router>
             <Header />
@@ -47,6 +47,8 @@ const App = () => {
                 <Route exact path="/houses" component={House} />
                 <Route exact path="/product/:id" component={DetailProduct} />
                 <Route exact path="/Profile" component={Profile} />
+                <Route exact path="/cart" component={Cart} />
+                <Route exact path="/checkout" component={Checkout} />
                 {/* <Route exact path="/MyBooking" component={MyBooking} /> */}
                 <PrivateRoute exact path="/MyBooking" component={MyBooking} />
                 <Route exact path="/MyBookingPending" component={MyBookingPending} />
@@ -59,9 +61,8 @@ const App = () => {
               </Switch>
             </Container>
           </Router>
-          {/* </AmenitiesContextProvider> */}
         
-        </FilterContextProvider>
+        </CartContextProvider>
       </UserContextProvider>
 
     </QueryClientProvider>

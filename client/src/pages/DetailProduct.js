@@ -1,17 +1,52 @@
 import { useState } from "react";
-// import { Form, Button } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+
 import { Row,Button, Col } from "react-bootstrap";
 import AddOrder from "../components/form/AddOrder"
+import {  useEffect, useContext } from "react";
+import {CartContext} from "../contexts/cartContext"
+import { API } from "../config/api";
+
 import ProductDetailItem from "../components/ProductDetailItem"
-function DetailProduct(props) {
+function DetailProduct({match,props,handleAddProduct}) {
   
   const [showSignin, setshowSignin] = useState(false);
- 
+  const [loading, setLoading] = useState(true);
+  const [data1, setData1] = useState(null);
+  const {state, dispatch} = useContext(CartContext);
+  const params = useParams();
+
+  
+  console.log(state)
+
+  const getProduct = async () => {
+    const response = await API.get(`/product/${params.id}`);
+    console.log(response);
+    setData1(response.data.data);
+    setLoading(false);
+  };
+   
+  useEffect(() => {
+    getProduct();
+    return () => {
+      setData1(null);
+    };
+  }, []);
+  
+  const addProduct = (item) => {
+    console.log(item)
+    dispatch({
+      type: "ADD_PRODUCT",
+      data: item,
+     
+    }) 
+  }
+console.log(data1)
   return (
     <div>
     <Row> 
     <Col>
-    <ProductDetailItem />
+    <ProductDetailItem data={data1}  handleClick={addProduct} />
     <Row>
                         <Col sm></Col>
                         <Col sm></Col>
@@ -23,8 +58,8 @@ function DetailProduct(props) {
                           Add to Cart
                       </Button>
                     
-                      <Button  onClick={() => setshowSignin(true)} className="justic=fy" variant="primary" type="submit">
-                          Add to Cart
+                      <Button variant="warning" onClick={addProduct}>
+                        Add to Cart
                       </Button>
                       {/* </Button> */}
                       {/* <AddOrder 

@@ -25,7 +25,7 @@ function Profile() {
   var token= localStorage.getItem("token")
 
   
-  const MakeTransaction = () => {
+  const Profiless = () => {
     fetch('http://localhost:5000/api/v1/user', {
       method: 'GET',
       headers: {
@@ -51,7 +51,7 @@ function Profile() {
 
 
   useEffect(() => {
-    MakeTransaction();
+    Profiless();
   }, []);
   console.log(dataUser)
   const item=dataUser
@@ -60,7 +60,7 @@ console.log(item)
   // const item=dataUser.myData
   // const handleSubmit = (event) => {
   //   event.preventDefault()
-  //   MakeTransaction() 
+  //   Profiless() 
   // }
   
 
@@ -96,7 +96,7 @@ console.log(item)
     </Col>
 
     <Col>
-    
+
     </Col>
 
      </Row>

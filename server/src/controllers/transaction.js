@@ -154,50 +154,57 @@ exports.getTransaction = async (req, res) => {
 try {
     const path = process.env.PATH_FILE
 
-    const transactions = await transaction.findOne({
+    let transactions = await transaction.findOne({
         
     where: {
         id: req.params.id,
     },
     include: [
+      {
+        model:user,
+        as:"user",
+        attributes:{
+            exclude:["id","user_id","createdAt", "updatedAt"],
+          },
+          include: [{
+        model:listAs,
+        as:"listas",
+        attributes: {
+          exclude: [ "id", "createdAt", "updatedAt"],
+        },
+          }],
+          attributes: {
+              exclude: [ "username","address","email","password","image", "createdAt", "updatedAt"],
+            },
+      },
         {
-            model:House,
-            as:"house",
+            model:product,
+            as:"product",
             attributes:{
               exclude:["id","createdAt", "updatedAt"],
             },
-            include: [
-                {
-                  model: City,
-                  as: "city",
-                  attributes: {
-                    exclude: [  "createdAt", "updatedAt"],
-                  },
-                },
-                
-               
-              ],
+           
         attributes:{
 
               exclude:[ "city_id","createdAt", "updatedAt"],
             },
           },
     ],
-    
-    attributes:{
-        exclude:[ "user_id","houseId","createdAt", "updatedAt"],
-      },
-    });
 
+       
+        attributes:{
+            exclude:[ "product_id","user_id","houseId","createdAt", "updatedAt"],
+          },
+      });
 
-    const parseJSON = JSON.parse(JSON.stringify(transactions))
+    // const parseJSON = JSON.parse(JSON.stringify(transactions))
 
-      transactions = parseJSONs => {
-          return {
-              ...transaction,
-              attachment: transaction.attachment ? path + transaction.attachment : null
-          }
-      }
+    //   transactions = parseJSONs => {
+    //       return {
+    //           ...transaction,
+    //           attachment: transaction.attachment ? path + transaction.attachment : null
+    //       }
+    //   }
 
     res.send({
     status: "success",
@@ -380,43 +387,49 @@ exports.transactionId = async (req, res) => {
 
       include: [
         {
-            model:House,
-            as:"house",
-            attributes:{
-              exclude:["id","createdAt", "updatedAt"],
+          model:user,
+          as:"user",
+          attributes:{
+              exclude:["id","user_id","createdAt", "updatedAt"],
             },
-            include: [
-                {
-                  model: City,
-                  as: "city",
-                  attributes: {
-                    exclude: [  "createdAt", "updatedAt"],
-                  },
-                },
-                
-               
-              ],
-        attributes:{
-
-              exclude:[ "city_id","createdAt", "updatedAt"],
+            include: [{
+          model:listAs,
+          as:"listas",
+          attributes: {
+            exclude: [ "id", "createdAt", "updatedAt"],
+          },
+            }],
+            attributes: {
+                exclude: [ "username","address","email","password","image", "createdAt", "updatedAt"],
+              },
+        },
+          {
+              model:product,
+              as:"product",
+              attributes:{
+                exclude:["id","createdAt", "updatedAt"],
+              },
+             
+          attributes:{
+  
+                exclude:[ "city_id","createdAt", "updatedAt"],
+              },
             },
-          },
-    ],
+      ],
+  
+         
+          attributes:{
+              exclude:[ "product_id","user_id","houseId","createdAt", "updatedAt"],
+            },
+        });
+      // const parseJSON = JSON.parse(JSON.stringify(transactions))
 
-       
-        attributes:{
-            exclude:[ "user_id","houseId","createdAt", "updatedAt"],
-          },
-      });
-
-      const parseJSON = JSON.parse(JSON.stringify(transactions))
-
-      transactions = parseJSON.map(transaction => {
-          return {
-              ...transaction,
-              attachment: transaction.attachment ? path + transaction.attachment : null
-          }
-      })
+      // transactions = parseJSON.map(transaction => {
+      //     return {
+      //         ...transaction,
+      //         attachment: transaction.attachment ? path + transaction.attachment : null
+      //     }
+      // })
    
       
     res.send({

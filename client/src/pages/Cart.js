@@ -1,4 +1,6 @@
 import {useContext} from 'react';
+import { BrowserRouter as Router, Route, Switch,Link } from "react-router-dom";
+
 
 import {
   Button, Card, Col, Row
@@ -7,30 +9,46 @@ import { CartContext } from '../contexts/cartContext';
 
 const Cart = () => {
   const {state, dispatch} = useContext(CartContext);
+
   const handleClick = (item, type) => {
     dispatch({
       type,
       data: item
     })
   };
+  const addProducts = (item) => {
+    console.log(item)
+    dispatch({
+      // type: "ADD_PRODUCT",
+      data: item,
+     
+    }) 
+  }
+
+  console.log(state)
   return (
     <div>
       {state.carts.length < 1 && (<p className="h1">Your cart is empty</p>)}
       {state.carts.length > 0 && (
+        
+        
         <Row>
+          
           {state.carts.map((item) => (
             <Col key={item.id}>
               <Card style={{ width: "18rem", marginBottom: "10px" }}>
                 <Card.Img
                   variant="top"
-                  src={item.image}
+                  src={item.photo}
                   height={200}
                   style={{ objectFit: "cover" }}
                 />
                 <Card.Body>
                   <Card.Title>{item.name}</Card.Title>
-                  <Card.Text>{item.price}</Card.Text>
-                  <div className="d-flex w-100 align-items-center">
+                  <Card.Text> harga {item.price}</Card.Text>
+                  <Row>
+                    <Col sm="4">
+                    <div className="d-flex w-100 align-items-center">
                     <div className="flex-grow-1">
 
                     <Button variant="warning" className="mr-2" onClick={() => handleClick(item, "REMOVE_PRODUCT")}>
@@ -41,8 +59,23 @@ const Cart = () => {
                       +
                     </Button>
                     </div>
-                    <Button variant="danger" onClick={() => handleClick(item, "REMOVE_CART")}>Remove</Button>
+                    {/* <Button variant="danger" onClick={() => handleClick(item, "REMOVE_CART")}>Remove</Button> */}
                   </div>
+
+
+                    </Col>
+                    <Col sm="4">
+                      <p>subtotal</p>
+                      <p>{item.qty}</p>
+                      <p>{item.price*item.qty}</p>
+                      <Link to="/checkout" >
+                      <Button data={item}> Proceed to Checkout</Button>
+                      
+                      </Link>
+                      
+                    </Col>
+                  </Row>
+         
                 </Card.Body>
               </Card>
             </Col>
