@@ -114,7 +114,7 @@ const MakeTransaction = async (e) => {
     const stat=res.status
        if(stat=="200"){
         console.log("success")
-        alert("Pembayaran Anda Akan di Konfirmasi dalam 1 x 24 Jam        Untuk melihat pesanan Klik Disini Terimakasih")
+        alert("Berhasil menambahkan produk")
         // router.push(`/mybookingpending`);
        }
     // console.log(res)

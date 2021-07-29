@@ -4,7 +4,7 @@ const { Router } = require("express");
 const {housesFilter,getHousesParam,updateHouse,getHouses,getHouse,createHouse,deleteHouse} = require("../controllers/houses")
 const { register, signin,checkAuth } = require('../controllers/auth')
 const { users, Profile, updateUser,deleteUser } = require('../controllers/user')
-const { createTransaction,StatusUpdate,updateTransaction,getTransaction,getAllTransaction,transactionId } = require('../controllers/transaction')
+const { getMyTransaction,createTransaction,StatusUpdate,updateTransaction,getTransaction,getAllTransaction,transactionId } = require('../controllers/transaction')
 const { getCity } = require('../controllers/city')
 const { getProducts,getProduct,createProduct } = require('../controllers/product')
 
@@ -14,14 +14,15 @@ const { auth,authentication } = require('../middlewares/auth')
 const { uploadFile } = require('../middlewares/uploadFile')
 
 const router = Router();
+router.post('/register', register)
+router.post('/login', signin)
 router.get('/products', getProducts)
 router.get("/product/:id", getProduct)
 // router.post("/product", uploadFile("imageFile"), createProduct, )
 router.post("/product", authentication,uploadFile("imageFile"), createProduct, )
+router.get("/transaction", getMyTransaction)
 
 
-router.post('/register', register)
-router.post('/login', signin)
 
 // router.get('/users', auth, users) // dengan token
 router.get('/users', users)

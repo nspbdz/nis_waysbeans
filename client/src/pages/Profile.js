@@ -82,97 +82,24 @@ console.log(item)
            <Jumbotron style={{marginBottom: "20px"}}>
        
        <Jumbotron className="col-lg-8 col-md-6 col-sm-6 col-xs-6 offset-3 float-md-center" style={{backgroundColor:"white"}}>
-       <Row>
-        <Col sm={6}>   
-        <h5>Personal Info</h5>
-
-
-        <Row>
-        <Col sm={2}>   
-        <BsPeopleCircle /> 
-        </Col>
-        <Col sm> 
-        <h6>{item.fullname}</h6>  
-        <p> Full Name</p> 
-        </Col>
-        </Row>
-        
-
-        <Row>
-        <Col sm={2}>   
-        <BsEnvelope /> 
-        </Col>
-        <Col sm>   
-        <h6>{item.email}</h6>  
+     <Row>
+    <Col>
+       <h6>{item.email}</h6>  
         <p> Email</p> 
-        </Col>
-        </Row>
-        
-        <Row>
-        <Col sm={2}>   
-        <BsLock /> 
-        </Col>
-        <Col sm>   
-        <h6>Change Password</h6>  
-        <p> password</p> 
-        </Col>
-        </Row>
-        
-        <Row>
-        <Col sm={2}>   
-        <BsFillHouseFill /> 
-        </Col>
-        <Col sm>   
-        <h6>{item.status}</h6>  
-        <p> Status</p> 
-        </Col>
-        </Row>
-        <Row>
-        <Col sm={2}>   
-        <FaTransgender /> 
-        </Col>
-        <Col sm>   
-        <h6>{item.gender}</h6>  
-        <p> Gender</p> 
 
-        </Col>
-        </Row>
+      <h6>{item.fullname}</h6>  
+        <p> Full Name</p> 
+     
+      <Card style={{ width: '18rem' }}>
+       <Card.Img variant="top" src="https://s1.ibtimes.com/sites/www.ibtimes.com/files/styles/full/public/2020/06/17/mark-zuckerberg-has-been-strongly-criticized-for-facebooks.jpg" /> 
+      </Card>
+    </Col>
 
-        <Row>
-        <Col sm={2}>   
-        <FaPhone /> 
-        </Col>
-        <Col sm>   
-        <h6>{item.phone}</h6>  
-        <p> Phone</p> 
+    <Col>
+    
+    </Col>
 
-        </Col>
-        </Row>
-
-        <Row>
-        <Col sm={2}>   
-        <BsGeoAlt /> 
-        </Col>
-        <Col sm>   
-        <h6>{item.address}</h6>  
-        <p> Address</p> 
-
-        </Col>
-        </Row>
-
-      </Col>
-        <Col sm={6}>
-            <Card style={{ width: '18rem' }}>
-            <Card.Img variant="top" src={item.image} />
-            <br></br> 
-
-            <Button variant="primary" onClick={handleShow}>Change Photo Profile</Button>{' '}
-            <ModalChangePassword show={show} handleClose={handleClose} />
-          </Card>
-      </Col>
-      </Row>
-   
-   
+     </Row>
     </Jumbotron>
 
     </Jumbotron>

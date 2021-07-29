@@ -215,7 +215,87 @@ try {
     });
 }
 };
+
+exports.getMyTransaction = async (req, res) => {
+  try {
+      const path = process.env.PATH_FILE
+      const { idUser } = req
+  
+      let transactions = await transaction.findAll();
+      
+      let transactionss = await transaction.findOne({
+
+      where: {
+        user_id:user_id
+    },
     
+    include: [
+      {
+        model:user,
+        as:"user",
+        attributes:{
+            exclude:["id","user_id","createdAt", "updatedAt"],
+          },
+          include: [{
+        model:listAs,
+        as:"listas",
+        attributes: {
+          exclude: [ "id", "createdAt", "updatedAt"],
+        },
+          }],
+          attributes: {
+              exclude: [ "username","address","email","password","image", "createdAt", "updatedAt"],
+            },
+      },
+        {
+            model:product,
+            as:"product",
+            attributes:{
+              exclude:["id","createdAt", "updatedAt"],
+            },
+           
+        attributes:{
+
+              exclude:[ "city_id","createdAt", "updatedAt"],
+            },
+          },
+    ],
+
+       
+        attributes:{
+            exclude:[ "product_id","user_id","houseId","createdAt", "updatedAt"],
+          },
+      });
+          
+    
+  
+  
+      // const parseJSON = JSON.parse(JSON.stringify(transactions))
+  
+      //   transactions = parseJSONs => {
+      //       return {
+      //           ...transaction,
+      //           attachment: transaction.attachment ? path + transaction.attachment : null
+      //       }
+      //   }
+  
+      res.send({
+      status: "success",
+      message: "resource has successfully get",
+      data: transactionss,
+      
+      
+      });
+  } catch (error) {
+      console.log(error);
+  
+      res.status(500).send({
+      status: "failed",
+      message: "internal server error",
+      });
+  }
+  };
+  
 
 exports.getAllTransaction = async (req, res) => {
     try {
