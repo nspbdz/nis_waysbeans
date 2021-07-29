@@ -1,11 +1,9 @@
 import { useContext,useState,useEffect } from "react"
 import {UserContext} from "../contexts/userContext";
-import userData from "../data/User";
 import { Card,Jumbotron,Row,Col,Button } from "react-bootstrap";
 import { BsPeopleCircle,BsEnvelope,BsLock,BsFillHouseFill,BsGeoAlt } from 'react-icons/bs';
 import { FaTransgender,FaPhone } from 'react-icons/fa';
 import ModalChangePassword from '../components/ModalChangePassword'
-// import userData from '../data/User'
 
 function Profile() {
   const {state} = useContext(UserContext);

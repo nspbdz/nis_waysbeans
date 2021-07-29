@@ -9,7 +9,6 @@ import ModalSignup from "./ModalSignup";
 import brand from "../assets/images/brand.svg";
 import Dropd from "./Dropd";
 import DropAdmin from "./DropAdmin";
-
 import "../styles/customStyle.css";
 import { setAuthToken } from "../config/api";
 const Header = () => {

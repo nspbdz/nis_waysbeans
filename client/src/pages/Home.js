@@ -1,7 +1,6 @@
 import { Row,Button, Col } from "react-bootstrap";
 
 import { useState,useEffect,useContext } from "react";
-import { FilterContext} from "../contexts/filterContext";
 // // import Sidebar from "../components/Sidebar";
 import Owner from "./Owner";
 import TransactionList from "../components/TransactionList";
@@ -16,7 +15,6 @@ const Home = () => {
   const [dataApi, setData] = useState(null);
   const [dataTransaction, setDataTransaction] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [loadingFilter, setLoadingFilter] = useState(false);
   const [loadingTransaction, setLoadingTransaction] = useState(false);
   
 

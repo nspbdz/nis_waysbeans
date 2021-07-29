@@ -22,9 +22,9 @@ router.post("/product", uploadFile("imageFile"), createProduct, )
 // router.post("/product", authentication,uploadFile("imageFile"), createProduct, )
 router.get("/transaction", getMyTransaction)
 router.get("/transaction/:id", getTransaction)
-// router.post("/transaction", uploadFile("imageFile"), createTransaction)
+router.post("/transaction", uploadFile("imageFile"), createTransaction)
 
-router.post("/transaction", uploadFile("imageFile"),authentication, createTransaction)
+// router.post("/transaction", uploadFile("imageFile"),authentication, createTransaction)
 
 
 

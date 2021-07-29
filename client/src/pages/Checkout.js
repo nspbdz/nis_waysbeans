@@ -7,9 +7,12 @@ import {
   Button, Card, Col, Row
 } from 'react-bootstrap';
 import { CartContext } from '../contexts/cartContext';
+import { UserContext } from '../contexts/userContext';
 
 const Checkout = (props) => {
+  const contextValue = useContext(UserContext);
   var token= localStorage.getItem("token")
+console.log(contextValue[0].user.id)
 
   const router = useHistory();
 
@@ -21,7 +24,10 @@ const Checkout = (props) => {
     })
   };
   
+console.log(contextValue[0].user.id)
+
   console.log(state.carts[0].qty)
+  const idUser=contextValue[0].user.id
   const qty=state.carts[0].qty
   const price=state.carts[0].price
   const description=state.carts[0].description
@@ -35,12 +41,14 @@ const Checkout = (props) => {
     name: "",
     email: "",
     Phone: "",
+    status: "",
     possCode  : "",
     price: "",
     orderQuantity: "",
     address: "",
     imageFile: null,
     product_id: "",
+    user_id: "",
   });
 
   const handleChange = (e) => {
@@ -64,8 +72,10 @@ const Checkout = (props) => {
       formData.set("orderQuantity", qty);
       formData.set("address", data.address);
       formData.set("price", price);
+      formData.set("status", "Waiting Approve");
       formData.set("description", description);
       formData.set("product_id", ids);
+      formData.set("user_id", idUser);
       formData.append("imageFile", data.imageFile, data.imageFile.name);
 
       const config = {

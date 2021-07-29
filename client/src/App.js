@@ -11,10 +11,6 @@ import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import About from "./pages/About";
-import MyBooking from "./pages/MyBooking";
-import MyBookingPending from "./pages/MyBookingPending";
-import MyBookingHistory from "./pages/MyBookingHistory";
-import History from "./pages/AdminHistory";
 import AddProperty from "./pages/AddProperty";
 
 // MyBooking
@@ -50,10 +46,6 @@ const App = () => {
                 <Route exact path="/cart" component={Cart} />
                 <Route exact path="/checkout" component={Checkout} />
                 {/* <Route exact path="/MyBooking" component={MyBooking} /> */}
-                <PrivateRoute exact path="/MyBooking" component={MyBooking} />
-                <Route exact path="/MyBookingPending" component={MyBookingPending} />
-                <Route exact path="/MyBookingHistory" component={MyBookingHistory} />
-                <Route exact path="/History" component={History} />
                 <Route exact path="/AddProperty" component={AddProperty} />
                 
                 {/* <PrivateRoute exact path="/house/:id" component={DetailHouse} /> */}
