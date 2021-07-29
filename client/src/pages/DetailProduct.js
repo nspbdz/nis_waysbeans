@@ -22,6 +22,10 @@ function DetailProduct(props) {
                       <Button style={{width:"213px",marginTop:"20px",marginBottom:"20px"}}   onClick={() => setshowSignin(true)} className="justic=fy" variant="primary" type="submit">
                           Add to Cart
                       </Button>
+                    
+                      <Button  onClick={() => setshowSignin(true)} className="justic=fy" variant="primary" type="submit">
+                          Add to Cart
+                      </Button>
                       {/* </Button> */}
                       {/* <AddOrder 
                       show={showSignin}

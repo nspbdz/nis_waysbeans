@@ -75,9 +75,9 @@ console.log(state);
           <>
             <Row>
              <Col sm="2" style={{paddingRight:"100px"}}>
-             {/* <Link to="/" className="navbar-brand"> */}
+             <Link to="/" className="navbar-brand">
       <AiOutlineShoppingCart />
-      {/* </Link> */}
+      </Link>
              <Dropd />
              </Col>
              <Col sm="5"></Col>

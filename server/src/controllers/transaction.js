@@ -3,23 +3,11 @@ const joi = require('joi')
 const { Op } = require("sequelize");
 
 exports.createTransaction = async (req, res) => {
-  // const {  ...transactionsData } = req.body;
   const { user: userName, ...transactionsData } = req.body;
-  // ...req.body,
-
   console.log(req.body);
   try {
     const transactions = await transaction.create({
-      // id: uuidv4(),
       ...req.body,
-      // const data = req.body
-      // const { checkin, checkout,user_id,houseId,status } = req.body
-
-      // checkin:transactionsData.checkin,
-      // checkout:transactionsData.checkout,
-      // user_id:transactionsData.user_id,
-      // houseId:transactionsData.houseId,
-      // status:transactionsData.status,
     });
 
   
@@ -27,30 +15,17 @@ exports.createTransaction = async (req, res) => {
       where: {
         id: transactions.id,
       },
-      include: [
+      include: 
         {
-          model:House,
-          as:"house",
+          model:product,
+          as:"product",
           attributes:{
             exclude:["id","createdAt", "updatedAt"],
-          },
-          include: [
-              {
-                model: City,
-                as: "city",
-                attributes: {
-                  exclude: [  "createdAt", "updatedAt"],
-                },
-              },
-              
-             
-            ],
-      attributes:{
-
-            exclude:[ "product_id","city_id","createdAt", "updatedAt"],
-          },
+          }
+        
+     
         },
-  ],
+  
 
      
       attributes:{

@@ -16,6 +16,7 @@ const { uploadFile } = require('../middlewares/uploadFile')
 const router = Router();
 router.get('/products', getProducts)
 router.get("/product/:id", getProduct)
+// router.post("/product", uploadFile("imageFile"), createProduct, )
 router.post("/product", authentication,uploadFile("imageFile"), createProduct, )
 
 

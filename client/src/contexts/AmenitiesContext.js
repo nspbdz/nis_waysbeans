@@ -1,42 +1,24 @@
-import {createContext, useReducer} from 'react';
+import {createContext, useState,useReducer} from 'react';
 
-export const AmenitiesContext = createContext();
+const CartContext = createContext({});
 
-const initialState = {
-  isAmenities: false,
-  data: {
-    
-    amenities:"",
+const CartProvider = props => {
+
+  const [cart, setCart] = useState([]);
   
-  }
-}
-const reducer = (state, action) =>{
-  // const { type, payload } = action
-  switch (action.type) {
-    case "Amenitiesed":
-      return {
-        ...state,
-        isAmenities: true,
-        data: action.payload,
-      };
-    case "notAmenitiesed":
-      return {
-        ...state,
-        isAmenities: false,
-        data: null,
-      };
-    default:
-      throw new Error("unknown cases");
-  }
-};
+  const CartContext = {
+    cartContext: cart,
+    feedCart: arrayFromAPI => {
+      setCart([...arrayFromAPI]);
+    }
+  };
 
-
-export const AmenitiesContextProvider = ({children}) => {
-  const [state, AmenitiesDispatch] = useReducer(reducer, initialState);
 
   return (
-    <AmenitiesContext.Provider value={[ state, AmenitiesDispatch ]}>
-      {children}
-    </AmenitiesContext.Provider>
-  )
-}
+    <CartContext.Provider value={CartContext}>
+      {props.children}
+    </CartContext.Provider>
+  );
+};
+
+export { CartContext, CartProvider };
