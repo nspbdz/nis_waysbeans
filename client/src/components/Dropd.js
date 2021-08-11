@@ -60,7 +60,7 @@ const handleSignout = (e) => {
 
     <Dropdown.Item >
     <Row>
-        <Col sm="2"> <BsPeopleCircle style={{color:"blue"}} /> </Col>
+        <Col sm="2"> <BsPeopleCircle style={{color:"#613D2B"}} /> </Col>
         <Col sm="2">
     <Link to="/profile" style={{backgroundColor:"transparent"}} className="btn btn-light">profile</Link>
           
@@ -71,7 +71,7 @@ const handleSignout = (e) => {
     <Dropdown.Divider />
     <Dropdown.Item >
     <Row>
-        <Col sm="2"> <ImExit style={{color:"blue"}} /> </Col>
+        <Col sm="2"> <ImExit style={{color:"#613D2B"}} /> </Col>
         <Col sm="2">
     <Link to="/" onClick={handleSignout} style={{backgroundColor:"transparent"}} className="btn btn-light">Logout</Link>
           

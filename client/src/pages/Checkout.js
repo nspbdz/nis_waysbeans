@@ -1,5 +1,7 @@
 import {useContext,useState} from 'react';
 import { useHistory,Router,Link } from "react-router-dom";
+import axios from 'axios';
+import icon from "../../src/assets/images/Icon.svg";
 
 import { Form } from "react-bootstrap";
 
@@ -10,6 +12,8 @@ import { CartContext } from '../contexts/cartContext';
 import { UserContext } from '../contexts/userContext';
 
 const Checkout = (props) => {
+  const nowss =new Date().toLocaleTimeString("en-US", { month: "long",day: "2-digit" })
+  const [productId, setProductId] = useState([])
   const contextValue = useContext(UserContext);
   var token= localStorage.getItem("token")
 console.log(contextValue[0].user.id)
@@ -26,28 +30,44 @@ console.log(contextValue[0].user.id)
   
 console.log(contextValue[0].user.id)
 
-  console.log(state.carts[0].qty)
   const idUser=contextValue[0].user.id
-  const qty=state.carts[0].qty
   const price=state.carts[0].price
   const description=state.carts[0].description
-  const ids=state.carts[0].ids
-  console.log(state)
-  console.log(description)
-  console.log(state.carts.length)
-
-
+const dataCart =state.carts
+const dataJson=JSON.stringify(dataCart)
+const dataParse=JSON.parse(dataJson)
+  // console.log(dataCart)
+  console.log("dataJson",dataJson)
+  console.log("dataParse",dataParse)
+  var productPriceData = [];
+  var qty = [];
+  var ids = [];
+{dataCart?.length > 0 &&
+  dataCart?.map((itemss) => 
+  {
+    ids = ids.concat(itemss.id);
+    qty = qty.concat(itemss.qty);
+  }
+  )
+}
+console.log(ids);
+console.log(qty);
+  //  productidData.forEach((item, i) => {
+  //    console.log(productidData[i])
+  //       // formData.set("orderQuantity", item[i])
+  //     });
+  
   const [data, setData] = useState({
     name: "",
     email: "",
     Phone: "",
     status: "",
-    possCode  : "",
+    postCode  : "",
     price: "",
     orderQuantity: "",
     address: "",
     imageFile: null,
-    product_id: "",
+    productId: "",
     user_id: "",
   });
 
@@ -58,64 +78,51 @@ console.log(contextValue[0].user.id)
         e.target.type === "file" ? e.target.files[0] : e.target.value,
     });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("clicked")
     
-    try {
+    // try {
       const formData = new FormData();
+      formData.set("product", dataJson);
+      formData.set("postCode", data.postCode);
       formData.set("name", data.name);
+      formData.set("address", data.address);
       formData.set("email", data.email);
       formData.set("phone", data.phone);
-      formData.set("possCode", data.possCode);
-      formData.set("orderQuantity", qty);
-      formData.set("address", data.address);
-      formData.set("price", price);
       formData.set("status", "Waiting Approve");
       formData.set("description", description);
-      formData.set("product_id", ids);
       formData.set("user_id", idUser);
       formData.append("imageFile", data.imageFile, data.imageFile.name);
 
-      const config = {
-        headers: {
-          "Content-Type": "multipart/form-data",
-          'Authorization':`Bearer ${token}`
-        },
-      };
-      // let res = await fetch(`http://localhost:5000/api/v1/updatetransaction/150`, {
-        let res = await fetch(`http://localhost:5000/api/v1/transaction`, {
-          method: 'Post',
-          body: formData,
-        }
-  
-      );
-      console.log(res)
-  
-      const stat=res.status
-         if(stat=="200"){
-          console.log("success")
-          alert("kamu berhasil")
-          // router.push("/");
-         }
-      // console.log(res)
-  
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  
+      axios({
+        method: "post",
+        url: "http://localhost:5000/api/v1/transaction",
+        data: formData,
+        headers: { "Content-Type": "multipart/form-data",Authorization: "Bearer " +token, },
+      })
+        .then(function (response) {
+          //handle success
+          alert("Thank you for ordering in us, please wait 1 x 24 hours to verify you order")
+        //  router.push("/");
+        router.push("/");
 
+          console.log(response);
+        })
+        .catch(function (response) {
+          //handle error
+          console.log(response);
+        });
+      }
+  
 
   return (
-    // <p>asdasdas</p>
     <div>
       {state.carts.length < 1 && (<p className="h1">Your cart is empty</p>)}
       {state.carts.length > 0 && (
-       
-       <Row>
+        <Row>
          <Col sm="4">
+        <h4 style={{marginTop:"77px"}}>Shipping</h4>
          <Form onSubmit={handleSubmit}>
         <Form.Group>
           <Form.Control
@@ -149,11 +156,11 @@ console.log(contextValue[0].user.id)
         </Form.Group>
         <Form.Group>
           <Form.Control
-            name="possCode"
+            name="postCode"
             type="number"
-            value={data.possCode}
+            value={data.postCode}
             required
-            placeholder="possCode"
+            placeholder="postCode"
             onChange={handleChange}
           />
         </Form.Group>
@@ -175,53 +182,59 @@ console.log(contextValue[0].user.id)
             required
           />
         </Form.Group>
+        <Button style={{backgroundColor:"#613D2B",width:"300px"}} type="submit">pay</Button>
        
-        <Button type="submit">pay</Button>
       </Form>
  
 
          </Col>
 
          <Col sm="4">
-          {state.carts.map((item) => (
-            <Col key={item.id}>
-              <Card style={{ width: "18rem", marginBottom: "10px" }}>
-                <Card.Img
-                  variant="top"
-                  src={item.photo}
-                  height={200}
-                  style={{ objectFit: "cover" }}
-                />
-                <Card.Body>
-                  <Card.Title>{item.name}</Card.Title>
-                  <Card.Text> harga {item.price}</Card.Text>
-                  <Row>
-                    <Col sm="4">
-                    <div className="d-flex w-100 align-items-center">
-                    <div className="flex-grow-1">
+         {/* <> */}
+         {state.carts.map((item) => (
 
-                  
-                    </div>
-                    {/* <Button variant="danger" onClick={() => handleClick(item, "REMOVE_CART")}>Remove</Button> */}
-                  </div>
-
-
-                    </Col>
-                    <Col sm="4">
-                      <p>subtotal</p>
-                      <p>{item.qty}</p>
-                      <p>{item.price*item.qty}</p>
-                      
-                    </Col>
-                  </Row>
-         
-                </Card.Body>
-              </Card>
+    
+       <div style={{width:"524px",marginBottom:"20px",marginTop:"77px"}}>
+        <Row style={{backgroundColor:"#F6E6DA",height:"185px"}} >
+            <Col key={item.id}  md={3} style={{marginTop:"10px",paddingLeft:"5px"}}>
+              <img   src={item.photo}  style={{width:"90px",height:"140px",marginTop:"14px",marginLeft:"28px"}}   />
             </Col>
-          ))}
+          <Col  md={5}>
+            <h5 style={{marginTop:"25px"}}>{item.name}</h5>
+            {/* <p style={{fontSize:"12px",marginTop:"25px",marginBottom:"4px"}}>{item.product.price}</p> */}
+            <p style={{fontSize:"12px",marginBottom:"25px"}}>{nowss}</p> 
+         <p style={{fontSize:"12px",marginBottom:"4px"}}>Price: Rp.{item.price}</p>
+         <p style={{fontSize:"12px",marginBottom:"4px"}}>Qty: {item.qty}</p>
+         <p style={{fontSize:"12px",marginBottom:"4px"}}>Subtotal: Rp.{item.price*item.qty}</p>
+
           </Col>
-        </Row>
-      )}
+          <Col  md={4}  >
+              <div style={{alignItems:"center"}}>
+              <img src={icon}  style={{width:"100px", height:"32px",display:"block",marginLeft: "auto",marginRight:"auto",marginBottom:"5px",marginTop:"20px"}} />
+            </div>
+    
+        </Col>
+       </Row>
+
+    
+      </div>
+                   
+                   
+         ))} 
+                   
+                  {/* //  </> */}
+                   </Col>
+                   </Row>
+                   )}
+        {/* <Row>
+          <Col sm="4"></Col>
+          <Col sm="4">
+        <Button style={{backgroundColor:"#613D2B",width:"500px"}} type="submit">pay</Button>
+
+          </Col>
+          <Col sm="4"></Col>
+        </Row> */}
+
     </div>
   )
 }

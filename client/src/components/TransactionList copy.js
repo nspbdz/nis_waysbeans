@@ -35,8 +35,6 @@ const TransactionList = ({ data, isLoading, error,isLoadingFilter, errors }) => 
 const UpdateTrx = () => {
   fetch(`http://localhost:5000/api/v1/transaction/`, {
     method: 'PUT',
-  
-   
   })
     .then((res) => res.json() )
     .then((res) => {

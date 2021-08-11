@@ -44,7 +44,7 @@ const Signin = ({ handleSignin }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Email address</Form.Label>
+        <h4 style={{color:"#613D2B"}}> Login</h4>
         <Form.Control
           type="email"
           name="email"
@@ -52,13 +52,10 @@ const Signin = ({ handleSignin }) => {
           onChange={handleChange}
           placeholder="Enter email"
         />
-        <Form.Text className="text-muted">
-          We'll never share your email with anyone else.
-        </Form.Text>
+        
       </Form.Group>
 
       <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label>Password</Form.Label>
         <Form.Control
           type="password"
           name="password"
@@ -67,9 +64,10 @@ const Signin = ({ handleSignin }) => {
           placeholder="Password"
         />
       </Form.Group>
-      <Button variant="primary" type="submit">
+      <Button style={{backgroundColor:"#613D2B"}} type="submit">
         Submit
       </Button>
+      <p>Don't have an account ? Klik Here</p>
     </Form>
   );
 };

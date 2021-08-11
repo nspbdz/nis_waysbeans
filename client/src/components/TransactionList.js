@@ -23,11 +23,9 @@ var token= localStorage.getItem("token")
 
  const  handleClick =(id) =>{
   console.log(id)
-
   setDataId(id)
-
   console.log(dataId)
-  setshowInvoice(true)
+  // setshowInvoice(true)
  }
 //  const item=data.filter(items =>(items.id === id) )
  console.log(data)
@@ -88,16 +86,19 @@ const CancelStatus = (id) => {
 
   return (
     <>
-  {/* <h3>Incoming Transaction</h3> */}
+  <h3>Income Transaction</h3>
     <Row>
+
       <Table striped bordered hover >
-  <thead>
+  <thead style={{backgroundColor:"#E5E5E5"}}>
     <tr>
     <th>No</th>
-      <th>FullName</th>
-      <th>Bukti Transfer</th>
+      <th>Name</th>
+      <th>Address</th>
+      <th>Post Code</th>
+      <th>Product Order</th>
       <th> Status Payment</th>
-      <th>Action</th>
+      <th style={{textAlign:"center"}}>Action</th>
     </tr>
   </thead>
   
@@ -107,28 +108,33 @@ const CancelStatus = (id) => {
       {data?.length > 0 &&
         data?.map((item, index) => (
 
-  <tbody key={index}>
-             
-    <tr>
-                <td value={item.id}> {item.id}</td>
-                <td>{item.user.fullname}</td>
-                {/* <td> {item.house.fullname}</td> */}
-                <td> {item.attachment}</td>
-                <td> {item.status}</td>
+          <tbody style={{backgroundColor:"#FFFFFF"}} key={index}>
+                    
+            <tr>
+                  <td value={item.id}> {item.id}</td>
+                  <td>{item.name}</td>
+                  <td>{item.address}</td>
+                  <td>{item.postCode}</td>
+                  <td> kopi {item.order.name}</td>
+                  <td> {item.status}</td>
                 {/* <td id={item.id} value={item.id} onClick={() => handleClick(item.id)}> 
                 <BsSearch onClick={handleClick} 
                 />
                 </td> */}
                 {item.status== "Waiting Approve" ?
                   <td  > 
-                
-                <Button onClick={() => CancelStatus(item.id)}>
+                <Row>
+                  <Col sm="6"> <Button variant="danger" onClick={() => CancelStatus(item.id)}>
                     Cancel
-                  </Button>
-                
-                <Button onClick={() => approveStatus(item.id)}>
+                  </Button></Col>
+                  <Col sm="5">  <Button  variant="success" onClick={() => approveStatus(item.id)}>
                     Approve
-                  </Button>
+                  </Button></Col>
+                  <Col sm="1"></Col>
+                </Row>
+                
+                
+              
                 </td>
                 :null
                 }
@@ -154,6 +160,16 @@ const CancelStatus = (id) => {
                 </td>
                 :null
                 }
+                 {item.status== "Completed" ?
+                  <td  > 
+                  <Col sm="5">  <Button  variant="success" >
+                    Completed
+                  </Button></Col>
+                
+                </td>
+                :null
+                }
+                
     </tr>
    
   </tbody>

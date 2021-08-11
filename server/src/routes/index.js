@@ -20,23 +20,21 @@ router.get('/products', getProducts)
 router.get("/product/:id", getProduct)
 router.post("/product", uploadFile("imageFile"), createProduct, )
 // router.post("/product", authentication,uploadFile("imageFile"), createProduct, )
-router.get("/transaction", getMyTransaction)
+router.get("/mytransaction",auth, getMyTransaction)
 router.get("/transaction/:id", getTransaction)
-router.post("/transaction", uploadFile("imageFile"), createTransaction)
+router.post("/transaction", auth,uploadFile("imageFile"), createTransaction)
 router.get("/transactions", getAllTransaction)
 router.put("/transaction/:id", authentication, StatusUpdate)
-
 // router.post("/transaction", uploadFile("imageFile"),authentication, createTransaction)
 
-
-
+router.get('/user/', authentication, Profile)   
+router.patch('/user', auth, uploadFile("imageFile"), updateUser)
+// router.put('/user', auth, updateUser)
 
 
 // router.get('/users', auth, users) // dengan token
 router.get('/users', users)
 // router.get('/my-profile', auth, myProfile)
-router.get('/user/', authentication, Profile) 
-router.patch('/user', auth, uploadFile("imageFile"), updateUser)
 // router.delete('/user/:id',deleteUser)
 router.get("/check-auth", auth, checkAuth);
 

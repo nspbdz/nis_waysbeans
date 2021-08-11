@@ -5,6 +5,7 @@ import { useHistory,Router,Link } from "react-router-dom";
 import { UserContext } from "../../contexts/userContext";
 import { API } from "../../config/api";
 import { TiHomeOutline } from 'react-icons/ti';
+import guetamala from "../../assets/images/guetamala.png";
 
 function AddProductForm(props) {
   const [DataAmenities, setDataAmenities] = useState([]);
@@ -114,8 +115,8 @@ const MakeTransaction = async (e) => {
     const stat=res.status
        if(stat=="200"){
         console.log("success")
-        alert("Berhasil menambahkan produk")
-        // router.push(`/mybookingpending`);
+        alert("Success Add Product")
+        router.push(`/`);
        }
     // console.log(res)
 
@@ -134,68 +135,65 @@ console.log(token)
  
   return (
   <>
-  
-    <Form>
+  <Row>
+    <Col xs={5}>
+    <Form style={{marginTop:"40px"}}>
        
    
-  <Form.Group className="mb-3" controlId="name">
-    <Form.Label> <h5> Name </h5></Form.Label>
-    <Form.Control type="text"  name="name" value={dataUpdate.name} onChange={handleChange} />
-  </Form.Group>
-
-  <Form.Group className="mb-3" controlId="stock">
-    <Form.Label> <h5 style={{paddingTop:"28px"}}> Stock </h5></Form.Label>
-    <Form.Control type="text" name="stock" value={formData.stock} onChange={handleChange} />
-  </Form.Group>
-
-  <Form.Group className="mb-3" controlId="price">
-    <Form.Label> <h5 style={{paddingTop:"28px"}}> Price </h5></Form.Label>
-    <Form.Control type="text" name="price" value={formData.price} onChange={handleChange} />
-  </Form.Group>
-
-  
-  <Form.Group className="mb-3" controlId="description">
-    <Form.Label> <h5 style={{paddingTop:"28px"}}> description</h5></Form.Label>
-    <Form.Control as="textarea"  name="description" value={formData.description} onChange={handleChange} rows={3} />
-  </Form.Group>
-
-  <br></br>
-  <h5 style={{paddingTop:"30px"}}>Masukan Foto kopi</h5>
-  
-        <Row>
-
-    <Col sm="1">
-          <p>foto </p>
-      </Col>
-
-    <Col sm="2">
-       <Form.Control  style={{paddingTop:"28px"}}
-            name="imageFile"
-            type="file"
-            onChange={handleChange}
-            required
-          />
-          
-  
-    </Col>
-  </Row>
-    
-   
-  <Row>
-    <Col sm="4"></Col>
-    <Col sm="4">
-    <div style={{paddingTop:"80px"}}>
-      <Button style={{width:"300px",height:"50px"}} type="submit" onClick={handleSubmit}> Save</Button>
-
-      </div>
-    </Col>
-    <Col sm="4"></Col>
-  </Row>
-
+       <Form.Group className="mb-3" controlId="name">
+         <h4>Add Product</h4>
+         <Form.Control type="text" placeholder="name"  name="name" value={dataUpdate.name} onChange={handleChange} />
+       </Form.Group>
      
-</Form>
+       <Form.Group className="mb-3" controlId="stock">
+         <Form.Control type="text" placeholder="stock" name="stock" value={formData.stock} onChange={handleChange} />
+       </Form.Group>
+     
+       <Form.Group className="mb-3" controlId="price">
+         <Form.Control type="text" placeholder="price" name="price" value={formData.price} onChange={handleChange} />
+       </Form.Group>
+     
+       
+       <Form.Group className="mb-3" controlId="description">
+         <Form.Control as="textarea" placeholder="description" name="description" value={formData.description} onChange={handleChange} rows={3} />
+       </Form.Group>
+     
+       <br/>
+       {/* </br> */}
+       
+            <Form.Control  style={{paddingTop:"20px"}}
+                 name="imageFile"
+                 type="file"
+                 onChange={handleChange}
+                 required
+               />
+        
+       <Row>
+         <Col sm="2"></Col>
+         <Col sm="4">
+         <div style={{paddingTop:"54px"}}>
+           <Button style={{backgroundColor:"#613D2B", width:"260px",height:"40px"}} type="submit" onClick={handleSubmit}> 
+           Add Product
+           </Button>
+     
+           </div>
+         </Col>
+         <Col sm="4"></Col>
+       </Row>
+     
+          
+     </Form>
+     
+     
+    </Col>
+    <Col xs={1}>
+    </Col>
 
-
+    <Col  xs={5}>
+    <img style={{marginTop:"20px"}} width="436" height="500" src={guetamala} />
+    </Col>
+  </Row>
+  
 </>
 
  

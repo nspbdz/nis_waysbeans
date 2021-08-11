@@ -16,10 +16,16 @@ module.exports = (sequelize, DataTypes) => {
           name: "user_id",
         },
       }); 
-      transaction.belongsTo(models.product, { 
+      transaction.hasMany(models.product, { 
         as: "product",
         foreignKey: {
           name: "id",
+        },
+      }); 
+      transaction.hasMany(models.order, { 
+        as: "order",
+        foreignKey: {
+          name: "transactionsId",
         },
       }); 
      
@@ -30,14 +36,14 @@ module.exports = (sequelize, DataTypes) => {
   transaction.init({
     // id:DataTypes.INTEGER,
     user_id:DataTypes.INTEGER,
-    product_id:DataTypes.STRING,
     name:DataTypes.STRING,
     email:DataTypes.STRING,
     Phone:DataTypes.INTEGER,
     address:DataTypes.STRING,
     status:DataTypes.STRING,
+    postCode:DataTypes.STRING,
     attachment:DataTypes.STRING,
-    orderQuantity:DataTypes.INTEGER,
+    // orderQuantity:DataTypes.INTEGER,
    
   }, {
     sequelize,

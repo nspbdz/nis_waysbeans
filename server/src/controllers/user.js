@@ -52,6 +52,8 @@ exports.Profile = async (req, res) => {
     const path = process.env.PATH_FILE
 
         const { idUser } = req
+        console.log(idUser)
+        
 
         let myData = await user.findOne({
           
@@ -82,6 +84,7 @@ exports.Profile = async (req, res) => {
 exports.updateUser = async (req, res) => {
     try {
         const { idUser } = req
+        console.log(idUser)
         let data = req.body
         const image = req.files.imageFile[0].filename 
 

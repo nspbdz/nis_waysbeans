@@ -43,7 +43,7 @@ function DetailProduct({match,props,handleAddProduct}) {
   }
 console.log(data1)
   return (
-    <div>
+    <div> 
     <Row> 
     <Col>
     <ProductDetailItem data={data1}  handleClick={addProduct} />

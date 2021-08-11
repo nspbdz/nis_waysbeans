@@ -6,7 +6,8 @@ import {Row,Col,Badge, Button,  FormControl,  InputGroup,  Form,  Navbar,  Nav,}
 import {CartContext} from "../contexts/cartContext"
 import ModalSignin from "./ModalSignin"; 
 import ModalSignup from "./ModalSignup"; 
-import brand from "../assets/images/brand.svg";
+import icon from "../assets/images/Icon.svg";
+import shopcart from "../assets/images/shopcart.svg";
 import Dropd from "./Dropd";
 import DropAdmin from "./DropAdmin";
 import "../styles/customStyle.css";
@@ -46,8 +47,7 @@ console.log(state);
     <Navbar expand="lg">
     
       <Link to="/" className="navbar-brand">
-        {/* <img src={brand} alt="brand" /> */}
-    <p>COffe</p>
+        <img src={icon} alt="brand" />
       </Link>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
@@ -77,14 +77,17 @@ console.log(state);
             <Row>
              <Col sm="2" style={{paddingRight:"100px"}}>
            
-      <Link to="/cart" className="nav-link mr-3 my-2">     <AiOutlineShoppingCart /> {' '}
-            <Badge className="bg-secondary text-white">{cartState.carts.length}</Badge>
-      {/* <AiOutlineShoppingCart /> */}
-          
+            <Link to="/cart" >  
+            <Badge style={{marginRight:"10px"}} className="bg-secondary text-white">   {cartState.carts.length}</Badge>
+            <img  src={shopcart} style={{width:"30px", height:"30px"}} /> {' '}
+            {/* <img src={shopcart} style={{width:"30px", height:"30px"}} /> {' '}{cartState.carts.length} */}
+
             </Link>
+            </Col>
+            <Col sm="2">
              <Dropd />
              </Col>
-             <Col sm="5"></Col>
+             <Col sm="3"></Col>
              <Col sm="5"></Col>
 
            </Row>
@@ -96,10 +99,10 @@ console.log(state);
           )}
        {!state.isLogin && ( 
           <>
-            <Button className="mr-3 my-2" onClick={() => setshowSignup(true)}>
+            <Button className="mr-3 my-2" onClick={() => setshowSignup(true)} variant="light">
               Register
             </Button>
-            <Button className="my-2" onClick={() => setshowSignin(true)}>
+            <Button className="my-2" onClick={() => setshowSignin(true)} style={{backgroundColor:"#613D2B"}}>
               Login
             </Button>
             <ModalSignin

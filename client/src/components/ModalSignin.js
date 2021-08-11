@@ -11,5 +11,5 @@ const ModalSignin = (props) => {
     </Modal>
   );
 };
-
+ 
 export default ModalSignin;

@@ -49,6 +49,9 @@ const cartReducer = (state, action) => {
             
         ]
       }
+      // case "ADD_CHECKOUT":
+      
+       
 
     case "REMOVE_PRODUCT":
         const updatedProduct = state.carts.map(product => {

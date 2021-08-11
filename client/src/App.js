@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
-import AddProperty from "./pages/AddProduct";
+import AddPropertyForm from "./pages/AddProduct";
 
 // MyBooking
 // import DetailProduct from "./pages/DetailProduct";
@@ -44,7 +44,7 @@ const App = () => {
                 <Route exact path="/cart" component={Cart} />
                 <PrivateRoute exact path="/checkout" component={Checkout} />
                 {/* <Route exact path="/MyBooking" component={MyBooking} /> */}
-                <Route exact path="/AddProperty" component={AddProperty} />
+                <Route exact path="/AddProduct" component={AddPropertyForm} />
                 
                 {/* <PrivateRoute exact path="/house/:id" component={DetailHouse} /> */}
                 {/* <PrivateRoute exact path="/product/:id" component={DetailProduct} /> */}

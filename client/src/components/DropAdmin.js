@@ -7,6 +7,7 @@ import {UserContext} from "../contexts/userContext";
 import userData from "../data/User";
 import { ImExit } from "react-icons/im";
 import { BiReceipt } from "react-icons/bi";
+import cofee from "../assets/images/cofee.svg";
 
 import { Card,Jumbotron,Row,Col,Button,DropdownButton,Image } from "react-bootstrap";
 import { BsPeopleCircle,BsCalendar } from 'react-icons/bs';
@@ -69,9 +70,10 @@ const logouts = () => {
 
         <Dropdown.Item >
         <Row>
+          <img src={cofee} width="30" height="28" />
         {/* <Col sm="2"> <TiHomeOutline style={{color:"blue"}} /> </Col> */}
         <Col sm="2">
-    <Link to="/AddProperty" style={{backgroundColor:"transparent"}} className="btn btn-light">AddProduct</Link>
+    <Link to="/AddProduct" style={{backgroundColor:"transparent"}} className="btn btn-light">Add Product</Link>
           
         </Col>
       </Row>
@@ -81,7 +83,7 @@ const logouts = () => {
     <Dropdown.Divider />
     <Dropdown.Item >
     <Row>
-        <Col sm="2"> <ImExit style={{color:"blue"}} /> </Col>
+        <Col sm="2"> <ImExit style={{color:"#613D2B"}} /> </Col>
         <Col sm="2">
     <Link to="/" onClick={handleSignout} style={{backgroundColor:"transparent"}} className="btn btn-light">Logout</Link>
           

@@ -42,6 +42,8 @@ alert("berhasi register silahkan login  ")
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3" controlId="formBasicFullname">
+      <h4 style={{color:"#613D2B"}}> Register</h4>
+      
         <Form.Label>Your full name</Form.Label>
         <Form.Control 
         type="text" 
@@ -84,9 +86,11 @@ alert("berhasi register silahkan login  ")
       </Form.Group>
       
     
-      <Button variant="primary" type="submit">
-        Submit
+      
+      <Button style={{backgroundColor:"#613D2B"}} type="submit">
+      Register
       </Button>
+      <p>Already have an account ? Klik Here</p>
     </Form>
   );
 };

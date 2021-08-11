@@ -8,17 +8,19 @@ import CardList from "../components/CardList";
 import { API } from "../config/api";
 import { useQuery } from "react-query";
 import { UserContext } from "../contexts/userContext";
+import Jumbotron from "../assets/images/Jumbotron.svg";
+import icon from "../assets/images/Icon.svg";
+
 
 const Home = () => {
   const [state, dispatch] = useContext(UserContext);
 
   const [dataApi, setData] = useState(null);
+  const [dataApid, setDatad] = useState([]);
   const [dataTransaction, setDataTransaction] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loadingTransaction, setLoadingTransaction] = useState(false);
-  
-
-  // console.log(state)
+  console.log(dataApid)
   const { isLoading, data, error } = useQuery("product", async () => {
     const response = await API.get("/products");
     
@@ -34,6 +36,7 @@ const Home = () => {
       const response = await API.get("/transactions");
         console.log(response);
         setDataTransaction(response.data.data.transactions);
+        // setDataTransaction(response.data.data.transactions);
         setLoadingTransaction(false);
       };
     
@@ -64,7 +67,7 @@ const Home = () => {
         </Row>
         </Col>
         <Col >
-           
+        <img src={Jumbotron} />
         <CardList data={data} isLoading={isLoading} error={error} />
         </Col>
 </>
@@ -75,24 +78,17 @@ const Home = () => {
       )}
         {state.isLogin==true && state.user.listasid==2  &&(
 <>
-        <Col  xs={4}  style={{marginRight:"50px"}}>
-          {/* <Sidebar /> */}
-          <Row>
-            <Col sm="4"></Col>
-            <Col sm="3"></Col>
-            <Col sm="5">
-             {/* <Button style={{width:"140px",backgroundColor:"#5A57AB"}}  onClick={getHouses => setPage(true)} className="justic=fy" variant="primary" type="submit">
-                Apply
-            </Button> */}
-            </Col>
-        </Row>
-        </Col>
-        <Col >
-      
+        <Col>
+        <img src={Jumbotron} />
         <CardList data={data} isLoading={isLoading} error={error} />
 
-        
         </Col>
+        {/* <Col > */}
+      
+        {/* <CardList data={data} isLoading={isLoading} error={error} /> */}
+
+        
+        {/* </Col> */}
 </>
 
       )}
